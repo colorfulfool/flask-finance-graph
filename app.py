@@ -13,7 +13,9 @@ def normalize(s):
     return (s - s.min()) / (s.max() - s.min())
 
 def yahoo(ticker, start, end):
-    return yf.download(ticker, start=start, end=end)['Close', ticker]
+    data_frame = yf.download(ticker, start=start, end=end)
+    if data_frame == None: raise RuntimeError("Couldn't load")
+    return data_frame['Close', ticker]
 
 class YahooFinance:
     def __init__(self, start, end):
