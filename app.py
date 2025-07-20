@@ -27,8 +27,8 @@ class YahooFinance:
     def usd(self):
         return normalize(1 / self.gold)
 
-    def spy(self):
-        return normalize(self.ticker("SPY") / self.gold)
+    def normalized(self, ticker):
+        return normalize(self.ticker(ticker) / self.gold)
 
 @app.route("/")
 def hello_world():
@@ -41,7 +41,7 @@ def plot_png():
     fig = Figure()
     plt = fig.add_subplot()
     plt.plot(yahoo.usd(), label='USD', color='green')
-    plt.plot(yahoo.spy(), label='S&P', color='red')
+    plt.plot(yahoo.normalized('SPY'), label='S&P', color='red')
     plt.legend()
     plt.grid(True)
 
