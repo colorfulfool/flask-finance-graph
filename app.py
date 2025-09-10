@@ -48,6 +48,7 @@ def plot_png():
     plt.plot(yahoo.normalized('KZTUSD=X'), label='KZT', color='turquoise')
     plt.legend()
     plt.autoscale(tight=True)
+    plt.set_ylim(bottom=0)  # Set y-axis to start at 0
     plt.grid(True)
 
     byte_string = io.BytesIO()
