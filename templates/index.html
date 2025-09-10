@@ -1,2 +1,17 @@
 <!doctype html>
-<img src="/plot.png" />
+
+<form class="flex gap-1">
+  <input name="start" type="text" value="{{ start }}" />
+  <input name="end" type="text" value="{{ end }}" />
+  <input type="submit" />
+</form>
+
+<img src="/plot.png?start={{start}}&end={{end}}" />
+
+<script type="text/javascript">
+  document.querySelector("form").addEventListener("submit", (event) => {
+    event.preventDefault()
+    const params = new URLSearchParams(new FormData(event.currentTarget))
+    document.querySelector("img").setAttribute("src", `/plot.png?${params.toString()}`)
+  })
+</script>
